@@ -75,12 +75,12 @@ export const fallbackData = {
       }
     ],
     major_project: {
-      title: "Multi-Dataset Heart Disease Risk Prediction with Explainable AI and Class-Imbalance Handling",
-      type: "Final-year major project (B.Tech CSE)",
-      team_size: 2,
-      status: "Active implementation in Google Colab",
-      description: "Combines multiple heart disease datasets, applies explainable AI (SHAP-style interpretability) and class-imbalance handling techniques.",
-      demonstrates: "Applied ML + explainability skills distinct from web-dev projects"
+      title: "Multi-Dataset Heart Disease Risk Prediction with Explainable AI & Class-Imbalance Handling",
+      type: "Explainable AI (XAI) Project",
+      tech_stack: "Python, SHAP, XGBoost, Scikit-Learn",
+      status: "Model Evaluation & SHAP Integration",
+      description: "Engineered a multi-dataset medical risk prediction system using SHAP-style explainable AI interpretability and SMOTE class-imbalance algorithms.",
+      demonstrates: "Transparent Medical AI & Data Balancing"
     },
     utility_project: {
       title: "TODO App",

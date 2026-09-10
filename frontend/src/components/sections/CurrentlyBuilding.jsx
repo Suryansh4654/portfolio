@@ -47,10 +47,10 @@ export default function CurrentlyBuilding() {
                 <p className="text-xs text-[var(--color-text-secondary)] mb-1">Status</p>
                 <p className="text-sm font-medium text-[var(--color-text-primary)]">{activeProject?.status || "In Development"}</p>
               </div>
-              {activeProject?.team_size && (
+              {activeProject?.tech_stack && (
                 <div>
-                  <p className="text-xs text-[var(--color-text-secondary)] mb-1">Team</p>
-                  <p className="text-sm font-medium text-[var(--color-text-primary)]">{activeProject.team_size} Members</p>
+                  <p className="text-xs text-[var(--color-text-secondary)] mb-1">Tech Stack</p>
+                  <p className="text-sm font-medium text-[var(--color-text-primary)]">{activeProject.tech_stack}</p>
                 </div>
               )}
               {activeProject?.demonstrates && (
