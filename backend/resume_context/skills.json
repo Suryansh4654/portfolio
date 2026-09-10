@@ -2,47 +2,23 @@
   "categories": [
     {
       "name": "Languages",
-      "skills": [
-        {"name": "Python", "icon": "devicon-python-plain", "proficiency": 90},
-        {"name": "C++", "icon": "devicon-cplusplus-plain", "proficiency": 75},
-        {"name": "Java", "icon": "devicon-java-plain", "proficiency": 70},
-        {"name": "SQL", "icon": "devicon-mysql-plain", "proficiency": 80}
-      ]
+      "skills": ["Python", "Java", "C++", "JavaScript", "SQL"]
     },
     {
       "name": "Backend",
-      "skills": [
-        {"name": "Django", "icon": "devicon-django-plain", "proficiency": 90},
-        {"name": "Django REST Framework", "icon": "devicon-djangorest-plain", "proficiency": 85},
-        {"name": "REST APIs", "icon": "devicon-fastapi-plain", "proficiency": 85},
-        {"name": "JWT Authentication", "icon": "devicon-json-plain", "proficiency": 80}
-      ]
+      "skills": ["Django", "Django REST Framework", "REST APIs", "WebSockets", "JWT"]
+    },
+    {
+      "name": "AI / GenAI",
+      "skills": ["LangChain", "LangGraph", "RAG", "Prompt Engineering", "Gemini API"]
     },
     {
       "name": "Frontend",
-      "skills": [
-        {"name": "ReactJS", "icon": "devicon-react-original", "proficiency": 80},
-        {"name": "HTML", "icon": "devicon-html5-plain", "proficiency": 90},
-        {"name": "CSS", "icon": "devicon-css3-plain", "proficiency": 85}
-      ]
+      "skills": ["React", "HTML", "CSS", "Tailwind CSS"]
     },
     {
-      "name": "Database",
-      "skills": [
-        {"name": "PostgreSQL", "icon": "devicon-postgresql-plain", "proficiency": 85},
-        {"name": "MySQL", "icon": "devicon-mysql-plain", "proficiency": 75}
-      ]
-    },
-    {
-      "name": "Tools",
-      "skills": [
-        {"name": "Git", "icon": "devicon-git-plain", "proficiency": 85},
-        {"name": "GitHub", "icon": "devicon-github-original", "proficiency": 85},
-        {"name": "VS Code", "icon": "devicon-vscode-plain", "proficiency": 90},
-        {"name": "IntelliJ IDEA", "icon": "devicon-intellij-plain", "proficiency": 70},
-        {"name": "Postman", "icon": "devicon-postman-plain", "proficiency": 80},
-        {"name": "Docker", "icon": "devicon-docker-plain", "proficiency": 70}
-      ]
+      "name": "Database & Tools",
+      "skills": ["PostgreSQL", "MySQL", "Docker", "Git/GitHub", "Postman"]
     }
   ]
 }

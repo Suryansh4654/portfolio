@@ -1,32 +1,25 @@
 {
   "achievements": [
     {
-      "title": "Global Rank 3448 in TCS CodeVita Season 13",
-      "description": "Achieved Global Rank 3448 among 100,000+ participants in TCS CodeVita Season 13, a prestigious global coding competition.",
+      "title": "TCS CodeVita Season 13",
+      "description": "Achieved Global Rank 3448 among 100,000+ competitors in TCS CodeVita Season 13 global coding competition.",
       "category": "achievement",
       "issuer": "TCS",
       "date": "2025"
     },
     {
-      "title": "300+ DSA Problems Solved",
-      "description": "Solved 300+ Data Structures and Algorithms problems on LeetCode and CodeChef, covering arrays, trees, graphs, and dynamic programming.",
-      "category": "achievement",
-      "issuer": "LeetCode & CodeChef",
-      "date": "2025"
-    },
-    {
-      "title": "GUVI x HCL Hackathon Participant",
-      "description": "Participated in GUVI x HCL Hackathon — built and shipped a working prototype in 24 hours.",
-      "category": "achievement",
-      "issuer": "GUVI x HCL",
-      "date": "2025"
-    },
-    {
-      "title": "Digital Specialist Engineer — Infosys (HackWithInfy 2026)",
-      "description": "Secured the Digital Specialist Engineer (DSE) role at Infosys through HackWithInfy 2026 coding competition.",
+      "title": "Infosys Digital Specialist Engineer (DSE) Offer",
+      "description": "Secured top-tier Digital Specialist Engineer (DSE) role at Infosys through national coding competition HackWithInfy 2026.",
       "category": "achievement",
       "issuer": "Infosys",
       "date": "2026"
+    },
+    {
+      "title": "300+ DSA Problems Solved",
+      "description": "Solved 300+ Data Structures & Algorithms problems across LeetCode & CodeChef covering Dynamic Programming, Graphs & Trees.",
+      "category": "achievement",
+      "issuer": "LeetCode & CodeChef",
+      "date": "2025"
     }
   ],
   "certifications": [
