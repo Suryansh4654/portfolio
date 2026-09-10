@@ -17,11 +17,19 @@ class AIAssistantService:
         if gemini_key and gemini_key.strip() and gemini_key != 'your-gemini-key-here':
             try:
                 from langchain_google_genai import ChatGoogleGenerativeAI
-                self.llm = ChatGoogleGenerativeAI(
-                    model='gemini-1.5-flash',
-                    google_api_key=gemini_key,
-                    temperature=0.2,
-                )
+                # Try gemini-1.5-flash-latest or gemini-2.0-flash
+                try:
+                    self.llm = ChatGoogleGenerativeAI(
+                        model='gemini-1.5-flash-latest',
+                        google_api_key=gemini_key,
+                        temperature=0.2,
+                    )
+                except Exception:
+                    self.llm = ChatGoogleGenerativeAI(
+                        model='gemini-2.0-flash',
+                        google_api_key=gemini_key,
+                        temperature=0.2,
+                    )
                 self.is_configured = True
                 print("AIAssistantService: Successfully configured with Google Gemini API.")
             except Exception as e:

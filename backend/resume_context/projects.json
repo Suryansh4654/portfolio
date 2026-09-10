@@ -39,33 +39,33 @@
       "slug": "ai-interview-simulator",
       "summary": "Full-stack interview prep platform integrating Hugging Face APIs for automated question generation and evaluation.",
       "description": "An AI-powered interview preparation platform that uses Hugging Face APIs for automated question generation and candidate evaluation. Features a dynamic Q&A flow engine with real-time interaction and performance tracking.",
-      tech_stack": ["Python", "Django", "ReactJS", "Hugging Face APIs", "Streamlit"],
-      features: [
+      "tech_stack": ["Python", "Django", "ReactJS", "Hugging Face APIs", "Streamlit"],
+      "features": [
         "Full-stack interview prep platform integrating Hugging Face APIs for automated question generation and evaluation",
         "Dynamic Q&A flow engine with real-time interaction (React frontend, Django REST backend)",
         "Performance tracking module: session history logging, response scoring, personalized feedback",
         "Streamlit dashboard for rapid prototyping and visualizing model evaluation metrics"
       ],
-      github_url": "https://github.com/yash5749/interview-sim",
-      live_url": "",
-      date: "Sep 2025",
-      is_featured": true
+      "github_url": "https://github.com/yash5749/interview-sim",
+      "live_url": "",
+      "date": "Sep 2025",
+      "is_featured": true
     },
     {
       "title": "Digital Laundry Management System",
       "slug": "laundry-management",
       "summary": "Full-stack workflow automation for hostel laundry management with REST APIs for order tracking and user management.",
       "description": "A comprehensive full-stack workflow automation system for hostel laundry management. Features role-based access control, real-time dashboards, and structured API-driven order tracking.",
-      tech_stack: ["ReactJS", "Django", "PostgreSQL", "REST APIs"],
-      features: [
+      "tech_stack": ["ReactJS", "Django", "PostgreSQL", "REST APIs"],
+      "features": [
         "Full-stack workflow automation for hostel laundry management with REST APIs for order tracking and user management",
         "Role-based access control (student vs. admin) with a real-time dashboard for active orders",
         "Data consistency via validated API inputs and structured PostgreSQL schema design"
       ],
-      github_url: "https://github.com/Suryansh4654/laundry-management-system",
-      live_url: "https://laundry-management-system-2nvc.onrender.com",
-      date: "Oct 2024",
-      is_featured: true
+      "github_url": "https://github.com/Suryansh4654/laundry-management-system",
+      "live_url": "https://laundry-management-system-2nvc.onrender.com",
+      "date": "Oct 2024",
+      "is_featured": true
     }
   ]
 }
