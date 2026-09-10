@@ -1,0 +1,78 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/space-grotesk";
+
+@theme {
+  --font-sans: 'Inter Variable', system-ui, -apple-system, sans-serif;
+  --font-display: 'Space Grotesk Variable', system-ui, sans-serif;
+  
+  --color-bg-primary: #10131a;
+  --color-bg-secondary: #161922;
+  --color-bg-card: #1c202b;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #9ea5b4;
+  --color-accent: #0066ff;
+  --color-accent-hover: #0052cc;
+  --color-border: rgba(255, 255, 255, 0.08);
+}
+
+html, body {
+  background-color: #10131a;
+  color: #ffffff;
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background-color: #0066ff;
+  color: #ffffff;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #10131a;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #1c202b;
+  border-radius: 4px;
+}
+
+/* Electric Blue Circle Button */
+.btn-circle-blue {
+  width: 64px;
+  height: 64px;
+  border-radius: 9999px;
+  background-color: #0066ff;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 25px rgba(0, 102, 255, 0.3);
+}
+
+.btn-circle-blue:hover {
+  background-color: #0052cc;
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(0, 102, 255, 0.45);
+}
+
+/* Card Styling */
+.dev-card {
+  background-color: #161922;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.3s ease;
+}
+
+.dev-card:hover {
+  border-color: rgba(0, 102, 255, 0.4);
+  transform: translateY(-3px);
+}
+
+/* Smooth transitions */
+*, *::before, *::after {
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.15s ease;
+}

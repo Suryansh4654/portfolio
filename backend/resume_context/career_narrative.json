@@ -1,0 +1,50 @@
+{
+  "target_role": {
+    "title": "AI Engineer",
+    "focus": "Application-building/product side — integrating LLMs, RAG, agentic workflows into real software",
+    "not": "ML/data-science research side"
+  },
+  "placement": {
+    "secured": "Digital Specialist Engineer (DSE) at Infosys via HackWithInfy 2026",
+    "note": "Placement floor — actively targeting off-campus AI Engineer roles at product companies in the 8-15 LPA range"
+  },
+  "currently_learning": [
+    {
+      "topic": "Generative AI with LangChain",
+      "detail": "Building production-grade GenAI pipelines and RAG applications.",
+      "source": "CampusX course",
+      "status": "in_progress"
+    },
+    {
+      "topic": "Agentic AI with LangGraph",
+      "detail": "Orchestrating multi-agent workflows and complex agent architectures.",
+      "source": "CampusX course",
+      "status": "in_progress"
+    },
+    {
+      "topic": "Python Core & Advanced",
+      "detail": "Deepening OOP, exception handling, and package management/virtual environments (venv).",
+      "source": "Self-study",
+      "status": "in_progress"
+    },
+    {
+      "topic": "Low-Level Design (LLD)",
+      "detail": "SOLID principles and machine coding basics (Parking Lot, LRU Cache).",
+      "source": "Self-study",
+      "status": "in_progress"
+    }
+  ],
+  "major_project": {
+    "title": "Multi-Dataset Heart Disease Risk Prediction with Explainable AI and Class-Imbalance Handling",
+    "type": "Final-year major project (B.Tech CSE)",
+    "team_size": 2,
+    "status": "Active implementation in Google Colab",
+    "description": "Combines multiple heart disease datasets, applies explainable AI (SHAP-style interpretability) and class-imbalance handling techniques.",
+    "demonstrates": "Applied ML + explainability skills distinct from web-dev projects"
+  },
+  "utility_project": {
+    "title": "TODO App",
+    "description": "Full CRUD with user authentication, built while learning Django/DRF",
+    "demonstrates": "Auth/permissions patterns in practice"
+  }
+}

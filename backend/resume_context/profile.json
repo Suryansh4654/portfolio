@@ -1,0 +1,37 @@
+{
+  "name": "Suryansh Pandey",
+  "title": "AI Engineer & Full-Stack Developer",
+  "positioning": "Computer Science undergraduate (final year) with hands-on experience building full-stack web applications using Python, Django, React, Java, and REST APIs. Strong foundation in OOP, DSA, and SQL. Focused on backend development and building scalable, clean, AI-integrated software.",
+  "location": "Ghaziabad, Uttar Pradesh, India",
+  "email": "su12345pandey@gmail.com",
+  "phone": "+91-9580361022",
+  "linkedin_url": "https://www.linkedin.com/in/backend-suryansh-pandey/",
+  "github_url": "https://github.com/Suryansh4654",
+  "leetcode_url": "https://leetcode.com/u/suryansh_4654/",
+  "codechef_url": "https://www.codechef.com/users/suryansh_4654",
+  "education": [
+    {
+      "institution": "ABES Engineering College, AKTU University",
+      "degree": "B.Tech",
+      "field": "Computer Science & Engineering",
+      "start_date": "Sep 2023",
+      "end_date": "Present",
+      "grade": "CGPA 8.23",
+      "location": "Ghaziabad"
+    },
+    {
+      "institution": "St. Joseph's School, CBSE",
+      "degree": "Class XII",
+      "field": "Science",
+      "grade": "82.83%",
+      "location": ""
+    },
+    {
+      "institution": "St. Joseph's School, CBSE",
+      "degree": "Class X",
+      "field": "",
+      "grade": "87.33%",
+      "location": ""
+    }
+  ]
+}
