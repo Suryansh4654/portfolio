@@ -1,99 +1,79 @@
-import AnimatedSection from '../ui/AnimatedSection';
-import SectionHeading from '../ui/SectionHeading';
-import { usePortfolioData } from '../../hooks/usePortfolioData';
+import { Hammer, BookOpen } from 'lucide-react';
 
 export default function CurrentlyBuilding() {
-  const { data } = usePortfolioData();
-  const learning = data?.learning || [];
-  const narrative = data?.career_narrative || {};
-  
-  // Find primary focus major project
-  const projects = data?.projects || [];
-  const activeProject = narrative.major_project || projects.find(p => p.in_progress) || projects[0];
-
   return (
-    <AnimatedSection id="currently-building" className="container mx-auto px-6 lg:px-12">
-      <div className="flex flex-col items-center mb-16">
-        <div className="flex items-center gap-2 mb-4">
-          <span className="relative flex h-3 w-3">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
-          </span>
-          <span className="text-emerald-500 font-medium tracking-wide uppercase text-sm">Active</span>
+    <section id="currently-building" className="py-20 bg-[#161922] border-t border-b border-white/5">
+      <div className="container mx-auto px-6 lg:px-16 max-w-6xl">
+        
+        <div className="flex items-center gap-2 mb-3">
+          <span className="text-[#0066ff] font-mono text-sm font-bold">/</span>
+          <span className="text-xs font-mono font-bold uppercase tracking-widest text-slate-300">ACTIVE INITIATIVES</span>
         </div>
-        <SectionHeading title="Currently Building & Learning" subtitle="What I'm focused on right now." />
-      </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Major Project Card */}
-        <div className="lg:col-span-2 glass rounded-3xl p-8 md:p-10 border-2 border-emerald-500/20 relative overflow-hidden group">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl -mr-20 -mt-20 transition-transform group-hover:scale-150 duration-700"></div>
+        <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-tight mb-12">
+          Currently Building & Learning
+        </h2>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
-          <div className="relative z-10 flex flex-col h-full justify-between">
+          {/* Currently Building Card (7 cols) */}
+          <div className="lg:col-span-7 dev-card p-8 rounded-3xl space-y-4 flex flex-col justify-between">
             <div>
-              <span className="inline-block px-4 py-1.5 bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 rounded-full text-sm font-bold mb-6">
-                {activeProject?.type || "Primary Focus"}
-              </span>
-              <h3 className="text-2xl md:text-3xl font-display font-bold text-[var(--color-text-primary)] mb-4">
-                {activeProject?.title}
+              <div className="flex items-center gap-2 text-[#0066ff] mb-2 font-mono text-xs font-bold uppercase tracking-wider">
+                <Hammer size={16} /> CURRENTLY BUILDING
+              </div>
+
+              <h3 className="text-2xl font-display font-extrabold text-white mb-3">
+                Multi-Dataset Heart Disease Risk Prediction with Explainable AI
               </h3>
-              <p className="text-base md:text-lg text-[var(--color-text-secondary)] mb-8 max-w-xl leading-relaxed">
-                {activeProject?.description}
+
+              <p className="text-slate-300 text-sm leading-relaxed font-sans">
+                Building an ML system that combines multiple medical datasets and provides interpretable predictions using SHAP-style explainability and class-imbalance algorithms.
               </p>
             </div>
-            
-            <div className="flex items-center gap-6 mt-auto">
-              <div>
-                <p className="text-xs text-[var(--color-text-secondary)] mb-1">Status</p>
-                <p className="text-sm font-medium text-[var(--color-text-primary)]">{activeProject?.status || "In Development"}</p>
+
+            <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono">
+              <span className="text-slate-400">STATUS: Model Evaluation & SHAP Integration</span>
+              <span className="text-[#0066ff] font-bold">Python / Scikit-Learn / SHAP</span>
+            </div>
+          </div>
+
+          {/* Currently Learning Card (5 cols) */}
+          <div className="lg:col-span-5 dev-card p-8 rounded-3xl space-y-4 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center gap-2 text-emerald-400 mb-2 font-mono text-xs font-bold uppercase tracking-wider">
+                <BookOpen size={16} /> CURRENTLY LEARNING
               </div>
-              {activeProject?.tech_stack && (
-                <div>
-                  <p className="text-xs text-[var(--color-text-secondary)] mb-1">Tech Stack</p>
-                  <p className="text-sm font-medium text-[var(--color-text-primary)]">{activeProject.tech_stack}</p>
-                </div>
-              )}
-              {activeProject?.demonstrates && (
-                <div>
-                  <p className="text-xs text-[var(--color-text-secondary)] mb-1">Focus Area</p>
-                  <p className="text-sm font-medium text-[var(--color-text-primary)]">{activeProject.demonstrates}</p>
-                </div>
-              )}
+
+              <h3 className="text-xl font-display font-extrabold text-white mb-3">
+                Advanced AI & Engineering Focus
+              </h3>
+
+              <p className="text-slate-300 text-sm leading-relaxed font-sans mb-6">
+                Deepening knowledge in agentic AI architectures, multi-document RAG pipelines, and object-oriented Low-Level System Design (LLD).
+              </p>
+
+              <div className="flex flex-wrap gap-2">
+                <span className="px-3.5 py-1.5 rounded-xl bg-[#10131a] border border-white/10 text-xs font-mono font-bold text-emerald-400">
+                  LangGraph
+                </span>
+                <span className="px-3.5 py-1.5 rounded-xl bg-[#10131a] border border-white/10 text-xs font-mono font-bold text-emerald-400">
+                  Agentic RAG
+                </span>
+                <span className="px-3.5 py-1.5 rounded-xl bg-[#10131a] border border-white/10 text-xs font-mono font-bold text-emerald-400">
+                  System Design (LLD)
+                </span>
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-white/5 text-xs font-mono text-slate-400">
+              FOCUS: Production-Grade AI Systems
             </div>
           </div>
+
         </div>
 
-        {/* Direction Card */}
-        <div className="bg-[var(--color-bg-card)] rounded-3xl p-8 border border-[var(--color-border)] flex flex-col">
-          <h3 className="text-xl font-bold font-display text-[var(--color-text-primary)] mb-6">Career Direction</h3>
-          <p className="text-[var(--color-text-secondary)] mb-6 flex-grow leading-relaxed">
-            {narrative.target_role?.focus || narrative.current_focus || "Application-building/product side — integrating LLMs, RAG, agentic workflows into real software."} Aiming to transition into roles like <span className="font-medium text-[var(--color-text-primary)]">{typeof narrative.target_role === 'object' ? narrative.target_role?.title : (narrative.target_role || "AI Engineer")}</span>.
-          </p>
-          <div className="p-4 bg-[var(--color-bg-secondary)] rounded-xl border border-[var(--color-border)]">
-            <p className="text-sm font-medium text-[var(--color-text-primary)]">Upcoming</p>
-            <p className="text-xs text-[var(--color-text-secondary)] mt-1">Focusing on generative AI workflows, scaling REST endpoints, and deep diving into system design (LLD).</p>
-          </div>
-        </div>
-
-        {/* Learning Cards */}
-        {learning.map((item, index) => (
-          <div key={index} className="bg-[var(--color-bg-card)] p-6 rounded-2xl border border-[var(--color-border)] hover:border-[var(--color-accent)] transition-colors group">
-            <h4 className="text-lg font-bold text-[var(--color-text-primary)] mb-2 group-hover:text-[var(--color-accent)] transition-colors">{item.topic}</h4>
-            <p className="text-sm text-[var(--color-text-secondary)] mb-4 h-10">{item.detail}</p>
-            
-            <div className="w-full bg-[var(--color-bg-secondary)] rounded-full h-2 mb-2 overflow-hidden">
-              <div 
-                className="bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent-secondary)] h-2 rounded-full"
-                style={{ width: `${item.progress}%` }}
-              ></div>
-            </div>
-            <div className="flex justify-between text-xs font-semibold text-[var(--color-text-secondary)]">
-              <span>Progress</span>
-              <span className="text-[var(--color-text-primary)]">{item.progress}%</span>
-            </div>
-          </div>
-        ))}
       </div>
-    </AnimatedSection>
+    </section>
   );
 }

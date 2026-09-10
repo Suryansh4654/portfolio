@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Code2 } from 'lucide-react';
+import { Menu, X, FileText } from 'lucide-react';
 
 const NAV_LINKS = [
   { name: 'Home', href: '#hero' },
   { name: 'About', href: '#about' },
   { name: 'Skills', href: '#skills' },
   { name: 'Projects', href: '#projects' },
+  { name: 'Achievements', href: '#achievements' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -33,7 +34,7 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-6 lg:px-16 flex justify-between items-center">
         
-        {/* Logo: </ > Developer X Style */}
+        {/* Logo */}
         <a href="#" className="flex items-center gap-2 group">
           <span className="text-[#0066ff] text-xl font-mono font-extrabold">&lt;/&gt;</span>
           <span className="text-xl font-display font-bold tracking-tight text-white group-hover:text-slate-200 transition-colors">
@@ -43,7 +44,7 @@ export default function Navbar() {
 
         {/* Desktop Links */}
         <div className="hidden md:flex items-center space-x-8">
-          <ul className="flex space-x-8 text-slate-300 text-sm font-medium">
+          <ul className="flex space-x-6 text-slate-300 text-sm font-medium">
             {NAV_LINKS.map((link) => (
               <li key={link.name}>
                 <a href={link.href} className="hover:text-[#0066ff] transition-colors">
@@ -54,10 +55,11 @@ export default function Navbar() {
           </ul>
 
           <a 
-            href="#contact" 
-            className="px-5 py-2.5 rounded-full bg-[#0066ff] hover:bg-[#0052cc] text-white text-xs font-mono font-bold transition-all shadow-md hover:shadow-[0_0_20px_rgba(0,102,255,0.4)]"
+            href="/resume.pdf" 
+            download
+            className="px-5 py-2.5 rounded-full bg-[#0066ff] hover:bg-[#0052cc] text-white text-xs font-mono font-bold transition-all shadow-md hover:shadow-[0_0_20px_rgba(0,102,255,0.4)] inline-flex items-center gap-1.5"
           >
-            LET'S TALK
+            <FileText size={14} /> RESUME
           </a>
         </div>
 
@@ -103,11 +105,12 @@ export default function Navbar() {
               ))}
               <li className="pt-4">
                 <a 
-                  href="#contact" 
+                  href="/resume.pdf" 
+                  download
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="inline-block px-8 py-3.5 rounded-full bg-[#0066ff] text-white font-bold text-sm"
+                  className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#0066ff] text-white font-bold text-sm"
                 >
-                  LET'S TALK
+                  <FileText size={16} /> DOWNLOAD RESUME
                 </a>
               </li>
             </ul>

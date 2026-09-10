@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowDown, ArrowRight, Github, Linkedin, Code, Mail } from 'lucide-react';
+import { ArrowRight, FileText, Github, Linkedin, Code, Trophy, Briefcase, GraduationCap, Brain } from 'lucide-react';
 import { usePortfolioData } from '../../hooks/usePortfolioData';
 
 export default function Hero() {
@@ -7,39 +7,83 @@ export default function Hero() {
   const profile = data?.profile || {};
 
   return (
-    <section id="hero" className="relative min-h-screen pt-32 pb-20 bg-[#10131a] flex flex-col justify-between overflow-hidden">
+    <section id="hero" className="relative pt-32 pb-12 bg-[#10131a] flex flex-col justify-between overflow-hidden">
       <div className="container mx-auto px-6 lg:px-16 relative z-10 my-auto">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative">
           
-          {/* Left Column (5 cols) */}
-          <div className="lg:col-span-5 z-20 space-y-6 text-left">
-            {/* White Decorative Line */}
-            <div className="w-16 h-1 bg-white mb-8" />
+          {/* Left Column (7 cols) */}
+          <div className="lg:col-span-7 z-20 space-y-6 text-left">
+            <div className="w-16 h-1 bg-[#0066ff] mb-6" />
             
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold text-white tracking-tight leading-[1.1]">
-              I'm Suryansh, a <span className="text-white block">Full-Stack & AI Developer</span>
-            </h1>
+            <div className="space-y-2">
+              <span className="text-[#0066ff] font-mono text-xs font-bold uppercase tracking-widest block">
+                SOFTWARE ENGINEER & AI ARCHITECT
+              </span>
+              <h1 className="text-4xl sm:text-6xl font-display font-black text-white tracking-tight leading-tight">
+                Suryansh Pandey
+              </h1>
+              <h2 className="text-xl sm:text-2xl font-display font-bold text-[#0066ff] tracking-tight">
+                AI Engineer & Backend-Focused Full-Stack Developer
+              </h2>
+            </div>
 
-            <p className="text-slate-400 text-sm sm:text-base leading-relaxed max-w-md font-sans">
-              Computer Science undergraduate building high-performance Django REST backends, real-time WebSockets engines, and production-grade LLM RAG pipelines.
+            <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl font-sans">
+              I build scalable backend systems, full-stack applications, and AI-powered products using Python, Django, React, and modern GenAI technologies.
             </p>
 
-            {/* Giant Electric Blue Circle Arrow Button */}
-            <div className="pt-6">
+            {/* Action Buttons */}
+            <div className="flex flex-wrap gap-4 pt-2">
               <a 
-                href="#about" 
-                className="btn-circle-blue group"
-                aria-label="Scroll to About section"
+                href="#projects" 
+                className="px-7 py-3.5 rounded-full bg-[#0066ff] hover:bg-[#0052cc] text-white text-xs font-mono font-bold tracking-wider transition-all shadow-lg hover:shadow-[0_0_25px_rgba(0,102,255,0.4)] inline-flex items-center gap-2"
               >
-                <ArrowDown size={28} className="group-hover:translate-y-1 transition-transform" />
+                VIEW PROJECTS <ArrowRight size={14} />
+              </a>
+              
+              <a 
+                href="/resume.pdf" 
+                download
+                className="px-7 py-3.5 rounded-full bg-[#161922] hover:bg-[#1c202b] text-white border border-white/10 hover:border-white/30 text-xs font-mono font-bold tracking-wider transition-all inline-flex items-center gap-2"
+              >
+                DOWNLOAD RESUME <FileText size={14} />
+              </a>
+            </div>
+
+            {/* Social Links Strip */}
+            <div className="pt-2 flex items-center gap-6 text-xs font-mono font-bold text-slate-400">
+              <a 
+                href={profile.github_url || "https://github.com/Suryansh4654"} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="hover:text-[#0066ff] transition-colors flex items-center gap-1.5"
+              >
+                <Github size={15} /> GitHub
+              </a>
+              <span>·</span>
+              <a 
+                href={profile.linkedin_url || "https://www.linkedin.com/in/backend-suryansh-pandey/"} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="hover:text-[#0066ff] transition-colors flex items-center gap-1.5"
+              >
+                <Linkedin size={15} /> LinkedIn
+              </a>
+              <span>·</span>
+              <a 
+                href={profile.leetcode_url || "https://leetcode.com/u/suryansh_4654/"} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="hover:text-[#0066ff] transition-colors flex items-center gap-1.5"
+              >
+                <Code size={15} /> LeetCode
               </a>
             </div>
           </div>
 
-          {/* Center Column: Portrait Photo Cutout (4 cols) */}
-          <div className="lg:col-span-4 flex justify-center items-end relative z-10 my-8 lg:my-0">
-            <div className="relative w-72 sm:w-80 lg:w-96 aspect-[3/4] overflow-hidden rounded-3xl bg-gradient-to-b from-slate-800/50 to-[#10131a] border border-white/10 shadow-2xl">
+          {/* Right Column: Center Avatar Photo (5 cols) */}
+          <div className="lg:col-span-5 flex justify-center items-center relative z-10 my-6 lg:my-0">
+            <div className="relative w-72 sm:w-80 lg:w-84 aspect-[4/5] overflow-hidden rounded-3xl bg-gradient-to-b from-slate-800/50 to-[#10131a] border border-white/10 shadow-2xl">
               <img 
                 src="/suryansh.jpg" 
                 alt="Suryansh Pandey" 
@@ -48,50 +92,49 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right Column: About, Work, Social Links (3 cols) */}
-          <div className="lg:col-span-3 z-20 space-y-8 text-left">
-            
-            {/* Quick About Block */}
-            <div className="space-y-2">
-              <h3 className="text-xs font-mono font-bold text-slate-300 uppercase tracking-widest">ABOUT ME</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Backend software developer & AI enthusiast. Infosys DSE offer holder via HackWithInfy 2026.
-              </p>
-              <a href="#about" className="inline-flex items-center gap-1 text-xs font-bold text-white hover:text-[#0066ff] transition-colors pt-1">
-                LEARN MORE <ArrowRight size={12} />
-              </a>
-            </div>
+        </div>
 
-            {/* Quick Work Block */}
-            <div className="space-y-2">
-              <h3 className="text-xs font-mono font-bold text-slate-300 uppercase tracking-widest">MY WORK</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                4+ production full-stack builds including EventHub real-time ticketing and StudyRoom co-working.
-              </p>
-              <a href="#projects" className="inline-flex items-center gap-1 text-xs font-bold text-white hover:text-[#0066ff] transition-colors pt-1">
-                BROWSE PORTFOLIO <ArrowRight size={12} />
-              </a>
+        {/* 🏆 Section 2: Achievement Strip directly below Hero */}
+        <div className="mt-14 pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-4">
+          
+          <div className="p-4 rounded-2xl bg-[#161922] border border-white/5 flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0 border border-amber-500/20">
+              <Trophy size={20} />
             </div>
-
-            {/* Social Links Block */}
-            <div className="space-y-3">
-              <h3 className="text-xs font-mono font-bold text-slate-300 uppercase tracking-widest">FOLLOW ME</h3>
-              <div className="flex items-center gap-4 text-slate-300">
-                <a href={profile.github_url || "https://github.com/Suryansh4654"} target="_blank" rel="noopener noreferrer" className="hover:text-[#0066ff] transition-colors">
-                  <Github size={18} />
-                </a>
-                <a href={profile.linkedin_url || "https://www.linkedin.com/in/backend-suryansh-pandey/"} target="_blank" rel="noopener noreferrer" className="hover:text-[#0066ff] transition-colors">
-                  <Linkedin size={18} />
-                </a>
-                <a href={profile.leetcode_url || "https://leetcode.com/u/suryansh_4654/"} target="_blank" rel="noopener noreferrer" className="hover:text-[#0066ff] transition-colors">
-                  <Code size={18} />
-                </a>
-                <a href={`mailto:${profile.email || "su12345pandey@gmail.com"}`} className="hover:text-[#0066ff] transition-colors">
-                  <Mail size={18} />
-                </a>
-              </div>
+            <div>
+              <span className="text-[10px] font-mono text-slate-400 uppercase block">TCS CodeVita</span>
+              <span className="text-xs font-bold text-white">Global Rank 3448</span>
             </div>
+          </div>
 
+          <div className="p-4 rounded-2xl bg-[#161922] border border-white/5 flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center shrink-0 border border-blue-500/20">
+              <Briefcase size={20} />
+            </div>
+            <div>
+              <span className="text-[10px] font-mono text-slate-400 uppercase block">Infosys</span>
+              <span className="text-xs font-bold text-white">DSE Offer</span>
+            </div>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-[#161922] border border-white/5 flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center shrink-0 border border-purple-500/20">
+              <Brain size={20} />
+            </div>
+            <div>
+              <span className="text-[10px] font-mono text-slate-400 uppercase block">Problem Solving</span>
+              <span className="text-xs font-bold text-white">300+ DSA Problems</span>
+            </div>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-[#161922] border border-white/5 flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0 border border-emerald-500/20">
+              <GraduationCap size={20} />
+            </div>
+            <div>
+              <span className="text-[10px] font-mono text-slate-400 uppercase block">Academics</span>
+              <span className="text-xs font-bold text-white">B.Tech CSE — 8.23 CGPA</span>
+            </div>
           </div>
 
         </div>

@@ -1,4 +1,5 @@
 import json
+import re
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.messages import HumanMessage, AIMessage
 from .context import ResumeContextLoader
@@ -46,16 +47,19 @@ class AIAssistantService:
                 print(f"AIAssistantService: Failed to load Anthropic client: {e}")
 
     def _build_system_prompt(self):
-        return """You are Suryansh Pandey's personal AI Assistant on his portfolio website. You speak warmly, professionally, and authoritatively about Suryansh's full-stack & AI engineering skills, projects, achievements, and career goals.
+        return """You are Suryansh's AI Portfolio Assistant on his portfolio website. You answer questions about Suryansh's skills, projects, experience, education, achievements, and career goals.
 
-Context Data:
-{context}
+RULES & STRICT ANTI-HALLUCINATION BOUNDARIES:
+1. Only answer using the supplied portfolio context data.
+2. Never invent: projects, companies, technologies, achievements, work experience, or qualifications.
+3. Never exaggerate Suryansh's expertise beyond what is stated in the context.
+4. Do not infer proficiency beyond the provided information.
+5. If the requested information is unavailable in the context, clearly state: "I don't have that information."
+6. Clearly distinguish between proven skills, completed projects, competitive achievements, and current learning areas.
+7. Default contact channels are Email and LinkedIn. Only mention phone number if explicitly requested.
 
-Guidelines:
-- Give clear, structured, well-formatted markdown responses.
-- Highlight key facts like TCS CodeVita Rank 3448 (Top 3.5% globally), Infosys DSE offer, 300+ DSA problems solved, and B.Tech 8.23 CGPA.
-- For project queries, mention EventHub (https://eventhub-live.vercel.app/), StudyRoom AI (https://studyroom-px8m.onrender.com), and AI Interview Simulator.
-- Be concise, smart, and enthusiastic about Suryansh's engineering capabilities!"""
+CONTEXT DATA:
+{context}"""
 
     def _format_history(self, history):
         formatted = []
@@ -70,70 +74,80 @@ Guidelines:
 
     def _generate_fallback_response(self, text):
         query = (text or '').lower().strip()
+        tokens = set(re.findall(r'\b\w+\b', query))
         
-        if any(k in query for k in ['hi', 'hello', 'hey', 'yo', 'who are you', 'what is this', 'greet']):
+        # Greetings
+        if any(w in tokens for w in ['hi', 'hello', 'hey', 'greetings', 'yo']):
             return ("Hello! 👋 I am Suryansh's AI Portfolio Assistant.\n\n"
-                    "Feel free to ask me anything about:\n"
-                    "• **Featured Builds**: EventHub, StudyRoom AI, AI Interview Simulator\n"
-                    "• **Technical Skills**: Python, Django REST, ReactJS, WebSockets, PostgreSQL, LangChain & RAG\n"
-                    "• **Milestones**: TCS CodeVita Rank 3448, Infosys DSE Offer, 300+ DSA Solved\n"
-                    "• **Contact & Education**: B.Tech CSE (8.23 CGPA), Email, LinkedIn & Resume!")
+                    "Feel free to ask me about:\n"
+                    "• **Strongest Skills**: Python, Django REST, React, WebSockets, PostgreSQL, LangChain & RAG\n"
+                    "• **Featured Projects**: EventHub, StudyRoom, AI Interview Simulator, AI-Powered Portfolio\n"
+                    "• **Achievements**: TCS CodeVita Global Rank 3448, Infosys DSE Offer, 300+ DSA Solved\n"
+                    "• **Education**: B.Tech CSE at ABES College (8.23 CGPA)")
 
-        if any(k in query for k in ['eventhub', 'event']):
-            return ("🎉 **EventHub — Full-Stack Event Management & Ticketing Platform**\n\n"
-                    "• **Summary**: Full-stack event management and real-time ticketing platform supporting dynamic event creation, attendee registration, and role-based access control.\n"
-                    "• **Tech Stack**: ReactJS, Python, Django REST Framework, PostgreSQL, Tailwind CSS\n"
-                    "• **Live Preview**: [https://eventhub-live.vercel.app/](https://eventhub-live.vercel.app/)\n"
-                    "• **Source Code**: [GitHub Repo](https://github.com/Suryansh4654/eventhub)")
+        # EventHub
+        if 'eventhub' in query:
+            return ("🎉 **EventHub — Full-Stack Event Management & Ticket Booking Platform**\n\n"
+                    "• **Problem/Solution**: Full-stack platform for creating events, managing attendees, and handling ticket registrations with role-based access control.\n"
+                    "• **Tech Stack**: React, Django, DRF, PostgreSQL, JWT\n"
+                    "• **Key Highlights**: Role-based authentication, event creation & management, attendee registration, ticket management, REST APIs, responsive React frontend.\n"
+                    "• **Live Demo**: [https://eventhub-live.vercel.app/](https://eventhub-live.vercel.app/)\n"
+                    "• **GitHub**: [https://github.com/Suryansh4654/eventhub](https://github.com/Suryansh4654/eventhub)")
 
-        if any(k in query for k in ['studyroom', 'co-working', 'socket', 'chat']):
+        # StudyRoom
+        if 'studyroom' in query or 'coworking' in query:
             return ("🚀 **StudyRoom — Real-Time Collaborative Co-Working Platform**\n\n"
-                    "• **Summary**: Real-time collaborative co-working platform enabling multi-user sessions, live chat, shared task checklists, and synchronized study timers.\n"
-                    "• **Tech Stack**: ReactJS, Python, Django, WebSockets, PostgreSQL\n"
-                    "• **Live App**: [https://studyroom-px8m.onrender.com](https://studyroom-px8m.onrender.com)\n"
-                    "• **Source Code**: [GitHub Repo](https://github.com/Suryansh4654/studyroom)")
+                    "• **Problem/Solution**: Real-time collaborative co-working platform that allows users to create/join rooms and communicate through WebSockets.\n"
+                    "• **Tech Stack**: React, Django, WebSockets, PostgreSQL\n"
+                    "• **Key Highlights**: Real-time communication, room creation/joining, WebSocket-based updates, user authentication, collaborative workspace.\n"
+                    "• **Live Demo**: [https://studyroom-px8m.onrender.com](https://studyroom-px8m.onrender.com)\n"
+                    "• **GitHub**: [https://github.com/Suryansh4654/studyroom](https://github.com/Suryansh4654/studyroom)")
 
-        if any(k in query for k in ['interview', 'simulator', 'hugging', 'ai simulator']):
-            return ("🤖 **AI Interview Simulator**\n\n"
-                    "• **Summary**: Full-stack interview prep platform integrating Hugging Face models for automated question generation and candidate evaluation.\n"
-                    "• **Tech Stack**: Python, Django REST, ReactJS, Hugging Face APIs, Streamlit\n"
-                    "• **Source Code**: [GitHub Repo](https://github.com/yash5749/interview-sim)")
+        # AI Interview Simulator
+        if 'interview' in query or 'simulator' in query:
+            return ("🤖 **AI Interview Simulator (Team Project)**\n\n"
+                    "• **Problem/Solution**: Full-stack interview prep platform integrating Hugging Face APIs for automated question generation and evaluation.\n"
+                    "• **My Contribution**: Backend / API / AI Integration\n"
+                    "• **Tech Stack**: Python, Django, React, Hugging Face APIs\n"
+                    "• **Key Highlights**: Automated question generation, Q&A flow evaluation engine, performance scoring, Streamlit dashboard.\n"
+                    "• **GitHub**: [https://github.com/yash5749/interview-sim](https://github.com/yash5749/interview-sim)")
 
-        if any(k in query for k in ['work', 'working', 'currently', 'building', 'now', 'recent', 'focus']):
-            return ("⚡ **Suryansh's Current Engineering Focus**:\n\n"
-                    "1. **B.Tech Major AI Capstone**: Multi-Dataset Heart Disease Risk Prediction using Explainable AI (SHAP interpretability) & class-imbalance algorithms.\n"
-                    "2. **Production Systems**: Building scalable Django REST APIs, WebSockets microservices, and high-contrast web UIs.\n"
-                    "3. **GenAI & Agentic AI**: Orchestrating multi-agent RAG workflows using LangChain and LangGraph.")
+        # Strongest Skills / Django
+        if any(w in tokens for w in ['skills', 'skill', 'django', 'backend', 'python', 'technologies', 'stack', 'hire']):
+            return ("🛠️ **Suryansh's Core Skills & Technical Arsenal**:\n\n"
+                    "• **Languages**: Python, Java, C++, JavaScript, SQL\n"
+                    "• **Backend**: Django, Django REST Framework (DRF), REST APIs, WebSockets, JWT Authentication\n"
+                    "• **AI / GenAI**: LangChain, LangGraph, RAG (Retrieval-Augmented Generation), Prompt Engineering, Gemini API\n"
+                    "• **Frontend**: React, HTML, CSS, Tailwind CSS\n"
+                    "• **Database & Tools**: PostgreSQL, MySQL, Docker, Git/GitHub, Postman")
 
-        if any(k in query for k in ['framework', 'backend', 'django', 'python', 'skill', 'tech', 'stack', 'language', 'database', 'react']):
-            return ("🛠️ **Suryansh's Technical Arsenal**:\n\n"
-                    "• **Backend**: Python (Primary), Django, Django REST Framework (DRF), RESTful APIs, JWT Auth, WebSockets\n"
-                    "• **AI & GenAI**: LangChain, LangGraph, RAG (Retrieval-Augmented Generation), Prompt Engineering, Gemini API\n"
-                    "• **Frontend**: ReactJS, HTML5, CSS3, Tailwind CSS, JavaScript (ES6+)\n"
-                    "• **Databases & Tools**: PostgreSQL, MySQL, Docker, Git, GitHub, Postman, C++, Java")
+        # Achievements / CodeVita / Infosys / DSA
+        if any(w in tokens for w in ['achievement', 'achievements', 'codevita', 'rank', 'infosys', 'dse', 'dsa', 'leetcode', 'codechef']):
+            return ("🏆 **Key Achievements & Recognitions**:\n\n"
+                    "• **TCS CodeVita Season 13**: Global Rank **3448** among 100,000+ competitors.\n"
+                    "• **Infosys DSE Offer**: Qualified for Digital Specialist Engineer role via HackWithInfy 2026.\n"
+                    "• **DSA Problem Solving**: 300+ problems solved across LeetCode & CodeChef.\n"
+                    "• **B.Tech CSE**: 8.23 CGPA at ABES Engineering College.")
 
-        if any(k in query for k in ['achievement', 'rank', 'codevita', 'tcs', 'dsa', 'leetcode', 'codechef', 'infosys', 'dse', 'award', 'offer']):
-            return ("🏆 **Competitive Coding & Placement Milestones**:\n\n"
-                    "1. **TCS CodeVita Season 13**: Achieved **Global Rank 3448** (Top 3.5% globally among 100,000+ competitors).\n"
-                    "2. **Infosys Digital Specialist Engineer (DSE) Offer**: Qualified for top-tier DSE role through HackWithInfy 2026.\n"
-                    "3. **300+ DSA Problems Solved**: Active problem solver on LeetCode & CodeChef across Arrays, Graphs, DP, and Trees.")
+        # Education
+        if any(w in tokens for w in ['education', 'college', 'cgpa', 'degree', 'aktu', 'abes']):
+            return ("🎓 **Education Summary**:\n\n"
+                    "• **B.Tech in Computer Science & Engineering**: ABES Engineering College (AKTU) — **CGPA: 8.23**\n"
+                    "• **Class XII (CBSE)**: 82.83%\n"
+                    "• **Class X (CBSE)**: 87.33%")
 
-        if any(k in query for k in ['education', 'college', 'aktu', 'grade', 'cgpa', 'degree', 'abes', 'school']):
-            return ("🎓 **Academic Background**:\n\n"
-                    "• **B.Tech (Computer Science & Engineering)**: ABES Engineering College, AKTU (2023 - Present) — **CGPA: 8.23**\n"
-                    "• **Class XII (CBSE Science)**: St. Joseph's School — **82.83%**\n"
-                    "• **Class X (CBSE)**: St. Joseph's School — **87.33%**")
-
-        if any(k in query for k in ['contact', 'email', 'phone', 'linkedin', 'github', 'reach', 'hire', 'mail']):
-            return ("📬 **Direct Contact Info for Suryansh Pandey**:\n\n"
+        # Contact / Reach
+        if any(w in tokens for w in ['contact', 'email', 'reach', 'linkedin', 'github', 'phone', 'number']):
+            if 'phone' in query or 'number' in query or 'call' in query:
+                return ("You can reach Suryansh by phone at +91-9580361022 or via email at su12345pandey@gmail.com.")
+            return ("📫 **You can connect with Suryansh through**:\n\n"
                     "• **Email**: su12345pandey@gmail.com\n"
-                    "• **Phone**: +91-9580361022\n"
-                    "• **LinkedIn**: [linkedin.com/in/backend-suryansh-pandey](https://www.linkedin.com/in/backend-suryansh-pandey/)\n"
-                    "• **GitHub**: [github.com/Suryansh4654](https://github.com/Suryansh4654)\n"
-                    "• **LeetCode**: [leetcode.com/u/suryansh_4654](https://leetcode.com/u/suryansh_4654/)")
+                    "• **LinkedIn**: [https://www.linkedin.com/in/backend-suryansh-pandey/](https://www.linkedin.com/in/backend-suryansh-pandey/)\n"
+                    "• **GitHub**: [https://github.com/Suryansh4654](https://github.com/Suryansh4654)\n"
+                    "• **LeetCode**: [https://leetcode.com/u/suryansh_4654/](https://leetcode.com/u/suryansh_4654/)")
 
-        return ("Suryansh Pandey is an AI Engineer & Full-Stack Developer specializing in Python, Django REST, React, WebSockets, and LLM RAG pipelines.\n\n"
-                "Ask me about his live projects (**EventHub**, **StudyRoom AI**), DSA achievements (TCS CodeVita Rank 3448), or technical skill set!")
+        return ("Suryansh Pandey is an AI Engineer and Backend-Focused Full-Stack Developer specializing in Python, Django REST, React, WebSockets, and LLM RAG pipelines.\n\n"
+                "Feel free to ask about his projects (EventHub, StudyRoom), skills, CodeVita rank, or education!")
 
     def stream_response(self, user_message, history):
         if not self.is_configured or self.llm is None:
